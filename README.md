@@ -8,17 +8,16 @@ This is implemented using parallelisation on CPU, developing the GPU shader will
 
 A Rust library for **fast, production-friendly constrained decoding** over a large, fixed candidate set (e.g., Semantic IDs / item IDs for generative retrieval). It flattens a prefix trie into a CSR transition matrix and uses a vectorized kernel (VNTK) plus a bit-packed dense mask for shallow layers to keep constraint enforcement accelerator-friendly.
 
-This design is inspired by STATIC (“Sparse Transition Matrix‑Accelerated Trie Index for Constrained Decoding”), which recasts trie traversal as vectorized sparse-matrix operations and reports very large speedups and low per-step overhead in an industrial deployment. [web:23][web:94]
+This design is inspired by STATIC (“Sparse Transition Matrix‑Accelerated Trie Index for Constrained Decoding”), which recasts trie traversal as vectorized sparse-matrix operations and reports very large speedups and low per-step overhead in an industrial deployment.
 
----
 
 ## Why this matters commercially
 
 Constrained decoding is what turns “LLM can generate an ID” into “LLM can generate only valid, in-policy IDs”:
 
 - **Hard business logic**: enforce inventory/freshness/eligibility policies at generation-time (no post-filtering surprises).
-- **Lower latency overhead**: move from pointer-chasing trie walks to contiguous CSR reads + vectorized scattering.
-- **Scale**: supports large constraint sets, where binary-search style methods can become an I/O bottleneck; STATIC frames this as O(1) I/O w.r.t. constraint-set size for the kernel. [web:23]
+- **Lower latency overhead**: move from pointer-chasing trie walks to contiguous CSR reads and vectorized scattering.
+- **Scale**: supports large constraint sets, where binary-search style methods can become an I/O bottleneck; STATIC frames this as `O(1)` I/O w.r.t. constraint-set size for the kernel.
 - **Deterministic outputs**: the index is static and reproducible, which helps auditing and rollout safety.
 
 ## What’s included
@@ -79,7 +78,7 @@ cargo bench
 
 ## Roadmap ideas
 
-- Parquet (or Arrow) persistence for `StaticIndex`
+- Parquet persistence for `StaticIndex`
 - SIMD/bitset masks for faster CPU-side gating
 - GPU/TPU-friendly kernels (layout already designed for coalesced reads)
 
