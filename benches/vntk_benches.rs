@@ -2,8 +2,8 @@ use criterion::{BenchmarkId, Criterion, Throughput, criterion_group, criterion_m
 use rand::RngExt;
 use rand::{SeedableRng, rngs::SmallRng};
 
-use transition_matrix_trie::transition::build_static_index;
-use transition_matrix_trie::vntk::vntk;
+use constraint_decoding_trie::transition::build_static_index;
+use constraint_decoding_trie::vntk::vntk;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Shared fixture helpers
