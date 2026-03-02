@@ -2,6 +2,27 @@
 name = "constraint-decoding-trie"
 version = "0.1.0"
 edition = "2024"
+description = "Generative Retrieval: Transition Matrix Trie for Constraint Decoding (STATIC)"
+authors = ["Lorenzo <tunedconsulting@gmail.com>"]
+license = "Apache-2.0"
+repository = "https://github.com/tuned-org-uk/constraint-decoding-trie-static"
+homepage = "https://github.com/tuned-org-uk/constraint-decoding-trie-static"
+documentation = "https://docs.rs/constraint-decoding-trie-static"
+readme = "README.md"
+keywords = ["vector-search", "generative-retrieval", "machine-learning"]
+categories = ["algorithms", "mathematics", "science"]
+exclude = [
+    "target/*",
+    "Cargo.lock",
+    ".git/*",
+    ".github/*",
+    "*.tmp",
+    "*.md",
+    "*.bib",
+    "*.cff",
+    "test_data/*",
+    "examples/*"
+]
 
 [dependencies]
 rayon = "1.11.0"
